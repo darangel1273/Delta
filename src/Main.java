@@ -15,7 +15,7 @@ public class Main {
     // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
         List<Contacto> contactoS;
         MySQL ms = new MySQL();
-        System.out.printf( Locale.getDefault(),"\n \t %S ",ms.darContacto("10214021").toString()  );
+        System.out.printf( Locale.getDefault(),"\n \t %S ",ms.darContacto("10214031").toString()  );
         contactoS = ms.darContactos() ;
         for(Contacto c : contactoS ){
             System.out.printf(Locale.getDefault(),"\nFinal %s",c.toString() ) ;
