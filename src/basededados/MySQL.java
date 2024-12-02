@@ -79,7 +79,7 @@ public class MySQL {
             Res = Com.executeQuery(SQL+filt+cc+ord+p ) ;
             while( Res.next() ){
                 System.err.printf(Locale.getDefault(),"\nC %d\t%d\t%s\t%s\t%tYYYY-MM-dd\t%s\t%s\t%s\t%d",  Res.getLong(1  ),  Res.getLong(2 ),
-                        Res.getString(3 ) , Res.getString(4 ) , Res.getDate(5 )  ,
+                        Res.getString(3 ) , Res.getString(4 ) , Res.getDate(5 ).toLocalDate()  ,
                         Res.getString(6) , Res.getString(7) , Res.getString(8 ) , Res.getLong(9 )   ) ;
                 ls.add( new Contacto(  String.valueOf(Res.getLong(1 ) ), String.valueOf( Res.getLong(2 ) ),
                                 Res.getString(3 ) , Res.getString(4 ) , String.valueOf(Res.getDate(5 ) ) ,
