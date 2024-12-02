@@ -2,41 +2,68 @@ package basededados;
 
 import rui.pereira.classesauxiliares.Contacto;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 
 public class MySQL {
     private final String Controlador ;
     private final String URL;
     private final String SQL;
+    private final String ISQL;
     private final String filt;
     private final String ord;
     private final String p;
     private final Connection Liga ;
     private final Statement Com ;
+    private PreparedStatement Prep ;
     private ResultSet Res;
     private final Properties Inf;
 
     public MySQL() {
-//        Controlador = "com.mysql.cj.jdbc.Driver";
         Controlador = "com.mysql.jdbc.Driver";
         Inf = new Properties();
         Inf.put("password", "contacto");
         Inf.put("user", "contacto");
         URL="jdbc:mysql://ruin:3306/contacto";
         SQL = "SELECT cc,nif,nome,apelido,nascimento,sexo,morada,email,telefone,foto FROM `pessoa` " ;
+//        ISQL = " INSERT INTO pessoa (cc,nif,nome,apelido,nascimento,sexo,morada,email,telefone) VALUES( ?,?,?,?,?,?,?,?,?,);" ;
+        ISQL = " INSERT INTO pessoa VALUES( ?,?,?,?,?,?,?,?,?,);" ;
         filt = " WHERE cc=" ;
         ord = " order by 1 " ;
         p = " ; " ;
         try {
-            Class.forName(Controlador);
-            Liga = DriverManager.getConnection(URL,Inf);
+            Class.forName( Controlador );
+            Liga = DriverManager.getConnection( URL,Inf );
             Com = Liga.createStatement();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch ( Exception e ) {
+            throw new RuntimeException( e );
+        }
+    }
+
+    /**
+     *
+     * @param c
+     * @return
+     */
+    public int addContacto( Contacto c) {
+        int ret = 0;
+        try {
+            Prep = Liga.prepareStatement( ISQL );
+            Prep.setLong(1, c.getBI() );
+            Prep.setLong(2, c.getNIF() );
+            Prep.setString(3, c.getNome() );
+            Prep.setString(4, c.getApelido() );
+            Prep.setDate(5, c.getNascimento() );
+            Prep.setString(6, c.getSexo() );
+            Prep.setString(7, c.getMorada().toString() );
+            Prep.setString(8, c.getEmail() );
+            Prep.setLong(9, Long.parseLong( c.getTelefone() ) );
+            Prep.executeUpdate()  ;
+        } catch ( SQLException e ) {
+            throw new RuntimeException( e );
+        }
+        finally {
+            return ret;
         }
     }
     /**

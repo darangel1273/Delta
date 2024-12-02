@@ -2,6 +2,7 @@
   <configuration default="false" name="DeltaCFG" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="Main" />
     <module name="Delta" />
+    <option name="PROGRAM_PARAMETERS" value="102140219ZX9 202609952 Rui_Manuel Oliveira_Pereira 1973-06-12 M Rua Francisco Marques Pereira (Nº4);R/C dto,Santarém,2490-554 OURÉM, PORTUGAL rui.o.pereira@gmail.com 00351911791682" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
