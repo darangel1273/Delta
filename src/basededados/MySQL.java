@@ -60,14 +60,13 @@ public class MySQL {
         }
         catch (Exception e) {
             e.printStackTrace();
-            System.err.printf(Locale.getDefault(),"\n %s ",e.getLocalizedMessage()  ) ;
+            System.err.printf(Locale.getDefault(),"\n %S ",e.getLocalizedMessage()  ) ;
             throw new RuntimeException(e);
         }
         finally{
             return ls;
         }
     }
-
     /**
      *
      * @return
